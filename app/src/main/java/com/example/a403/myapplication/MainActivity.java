@@ -20,13 +20,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     final int ADUALT_PAY = 15000;
-    final int STUDENT_TPAY = 12000;
+    final int STUDENT_PAY = 12000;
     final int CHILDREN_PAY = 8000;
+
+    boolean peopleCheck=false;
 
     int discountRatio=5;
     int personCount; //총 명수 저장 변수
@@ -51,13 +54,14 @@ public class MainActivity extends AppCompatActivity {
     ImageView iv;
     CalendarView cv;
     TimePicker tp;
-
+    TextView tv7,tv8,tv9;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("놀이동산 예약 시스템");
         // 프레임 선언
         frame = (FrameLayout)findViewById(R.id.frameLayout);
         linearLayout1 = (LinearLayout)findViewById(R.id.inLayout1);
@@ -72,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
         setRadioGroup();
         setTimePicker();
         setCalendarView();
+        setTextView();
+    }
+    void setTextView(){
+        tv7 = (TextView)findViewById(R.id.textView7);
+        tv8 = (TextView)findViewById(R.id.textView8);
+        tv9 = (TextView)findViewById(R.id.textView9);
     }
     // 크로노미터 설정
     void setChronometer(){
@@ -161,10 +171,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(et1.getText().toString().equals("") || et2.getText().toString().equals("") || et3.getText().toString().equals("")) {
+                    peopleCheck =false;
                     Toast.makeText(getApplicationContext(),"인원을 입력하세요",Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                else{
+                    peopleCheck = true; // 인원 예약 완료 됬다고 체크
+                    adult = Integer.parseInt(et1.getText().toString());
+                    student = Integer.parseInt(et2.getText().toString());
+                    children = Integer.parseInt(et2.getText().toString());
+                    sum = (adult*ADUALT_PAY)+(student*STUDENT_PAY)+(children*CHILDREN_PAY);
+                    discount = sum*(discountRatio/100);
+                    sum = sum-discount;
+                    int peoples= adult+student+children;
+                    tv7.setText("총 명수:"+peoples);
+                    tv8.setText("할인금액:"+discount);
+                    tv9.setText("결제금액:"+sum);
+                }
             }
         });
         bt2.setOnClickListener(new View.OnClickListener() {
@@ -174,8 +197,15 @@ public class MainActivity extends AppCompatActivity {
                 linearLayout2.setVisibility(View.VISIBLE);
             }
         });
+        bt3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),day+" "+time+"예약이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
+    // 캘린더 뷰 설정
     void setCalendarView(){
         cv = (CalendarView) findViewById(R.id.calendarView);
         cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -186,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // 타임피커 설정
     void setTimePicker(){
         tp = (TimePicker) findViewById(R.id.timePicker);
         tp.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
