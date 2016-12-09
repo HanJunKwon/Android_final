@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     CalendarView cv;
     TimePicker tp;
     TextView tv7,tv8,tv9;
-
+    RadioButton tb1, tb2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,9 +119,12 @@ public class MainActivity extends AppCompatActivity {
                     et3.setText(null);
 
                     iv.setImageResource(R.drawable.basic);
-
+                    RadioButton rb1=(RadioButton)findViewById(R.id.radioButton);
+                    RadioButton rb2=(RadioButton)findViewById(R.id.radioButton4);
+                    rb1.isChecked();
+                    rb2.isChecked();
                     tv7.setText("총 명수:");
-                    tv7.setText("할인금액:");
+                    tv8.setText("할인금액:");
                     tv9.setText("결제금액:");
                 }
             }
@@ -251,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
     // 타임피커 설정
     void setTimePicker(){
         tp = (TimePicker) findViewById(R.id.timePicker);
-        time = Integer.toString(tp.getCurrentHour())+Integer.toString(tp.getCurrentMinute());
+        time = Integer.toString(tp.getCurrentHour())+":"+Integer.toString(tp.getCurrentMinute());
         tp.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
