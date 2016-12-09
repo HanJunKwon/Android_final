@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                     student = Integer.parseInt(et2.getText().toString());
                     children = Integer.parseInt(et2.getText().toString());
                     sum = (adult*ADUALT_PAY)+(student*STUDENT_PAY)+(children*CHILDREN_PAY);
-                    discount = sum*(discountRatio/100);
+                    discount = sum/100*5;
                     sum = sum-discount;
                     int peoples= adult+student+children;
                     tv7.setText("총 명수:"+peoples);
@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
         cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                day = year + "년" + (month + 1) + "월" + dayOfMonth + "일";
+                day = year + "-" + (month + 1) + "-" + dayOfMonth;
             }
         });
     }
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
         tp.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                time = hourOfDay + "시" + minute + "분";
+                time = hourOfDay + ":" + minute;
             }
         });
     }
