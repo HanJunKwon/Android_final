@@ -32,14 +32,16 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:id="@+id/frameLayout"
+        android:layout_weight="1"
+        android:visibility="invisible">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/inLayout1"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <TextView
                 android:text="인원예약"
@@ -85,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
                     android:ems="10"
-                    android:id="@+id/editText3"
+                    android:id="@+id/editText2"
                     android:layout_weight="1" />
 
             </LinearLayout>
@@ -107,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
                     android:ems="10"
-                    android:id="@+id/editText4"
+                    android:id="@+id/editText3"
                     android:layout_weight="1" />
 
             </LinearLayout>
@@ -197,7 +199,8 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/inLayout2">
+            android:id="@+id/inLayout2"
+            android:visibility="invisible">
 
             <TextView
                 android:text="시간 예약"
