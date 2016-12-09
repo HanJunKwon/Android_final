@@ -105,6 +105,11 @@ public class MainActivity extends AppCompatActivity {
                     chrono.stop();
                     frame.setVisibility(View.INVISIBLE);
                     chrono.setTextColor(Color.GRAY);
+                    setEditText();
+                    setImageView();
+                    setTimePicker();
+                    setCalendarView();
+                    setTextView();
                 }
             }
         });
@@ -200,7 +205,18 @@ public class MainActivity extends AppCompatActivity {
         bt3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!peopleCheck){
+                    Toast.makeText(getApplicationContext(),"인원예약을 먼저 하세요",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Toast.makeText(getApplicationContext(),day+" "+time+"예약이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        bt4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearLayout1.setVisibility(View.VISIBLE);
+                linearLayout2.setVisibility(View.INVISIBLE);
             }
         });
     }
