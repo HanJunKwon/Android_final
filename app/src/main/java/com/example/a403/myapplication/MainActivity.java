@@ -24,6 +24,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
     final int ADUALT_PAY = 15000;
     final int STUDENT_PAY = 12000;
@@ -232,6 +234,9 @@ public class MainActivity extends AppCompatActivity {
     // 캘린더 뷰 설정
     void setCalendarView(){
         cv = (CalendarView) findViewById(R.id.calendarView);
+        Date curDate = new Date(cv.getDate());
+
+        day = Integer.toString(1900+curDate.getYear())+"-"+Integer.toString(1+curDate.getMonth())+"-"+Integer.toString(curDate.getDay());
         cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
