@@ -180,7 +180,7 @@
             </LinearLayout>
 
             <TextView
-                android:text="총 명수 : "
+                android:text="총 명수:"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView7" />

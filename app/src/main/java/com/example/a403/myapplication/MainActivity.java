@@ -78,11 +78,14 @@ public class MainActivity extends AppCompatActivity {
         setCalendarView();
         setTextView();
     }
+
+    // 텍스트 뷰 설정
     void setTextView(){
         tv7 = (TextView)findViewById(R.id.textView7);
         tv8 = (TextView)findViewById(R.id.textView8);
         tv9 = (TextView)findViewById(R.id.textView9);
     }
+
     // 크로노미터 설정
     void setChronometer(){
         chrono = (Chronometer)findViewById(R.id.chronometer);
@@ -105,11 +108,15 @@ public class MainActivity extends AppCompatActivity {
                     chrono.stop();
                     frame.setVisibility(View.INVISIBLE);
                     chrono.setTextColor(Color.GRAY);
-                    setEditText();
-                    setImageView();
-                    setTimePicker();
-                    setCalendarView();
-                    setTextView();
+                    et1.setText(null);
+                    et2.setText(null);
+                    et3.setText(null);
+
+                    iv.setImageResource(R.drawable.basic);
+
+                    tv7.setText("총 명수:");
+                    tv7.setText("할인금액:");
+                    tv9.setText("결제금액:");
                 }
             }
         });
@@ -172,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
         bt2 = (Button)findViewById(R.id.button2);
         bt3 = (Button)findViewById(R.id.button3);
         bt4 = (Button)findViewById(R.id.button4);
+
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
                     student = Integer.parseInt(et2.getText().toString());
                     children = Integer.parseInt(et2.getText().toString());
                     sum = (adult*ADUALT_PAY)+(student*STUDENT_PAY)+(children*CHILDREN_PAY);
-                    discount = sum/100*5;
+                    discount = sum/100*discountRatio;
                     sum = sum-discount;
                     int peoples= adult+student+children;
                     tv7.setText("총 명수:"+peoples);
