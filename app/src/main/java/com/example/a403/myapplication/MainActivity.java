@@ -110,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
                     chrono.stop();
                     frame.setVisibility(View.INVISIBLE);
                     chrono.setTextColor(Color.GRAY);
+                    linearLayout1.setVisibility(View.VISIBLE);
+                    linearLayout2.setVisibility(View.INVISIBLE);
+
                     et1.setText(null);
                     et2.setText(null);
                     et3.setText(null);
@@ -248,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
     // 타임피커 설정
     void setTimePicker(){
         tp = (TimePicker) findViewById(R.id.timePicker);
+        time = Integer.toString(tp.getCurrentHour())+Integer.toString(tp.getCurrentMinute());
         tp.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
